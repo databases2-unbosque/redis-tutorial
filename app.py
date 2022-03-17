@@ -25,16 +25,16 @@ def bytes2json(result_bytes):
 def hello():
     return "Hello world!"
 
-# "/cart/<userId>/add" URL is bound with add() function
-@app.route("/cart/<userId>/add", methods = ["POST"])
+# "users/<userId>/cart" URL is bound with add() function
+@app.route("users/<userId>/cart", methods = ["POST"])
 def add(userId):
     r = get_redis_conn()
     cart = request.json
     r.hmset("user:{userId}:cart".format(userId = userId), cart)
     return "Cart for user {userId} created/updated".format(userId = userId), 201
 
-# "/cart/<userId>" URL is bound with get() function
-@app.route("/cart/<userId>")
+# "users/<userId>/cart" URL is bound with get() function
+@app.route("users/<userId>/cart")
 def get(userId):
     r = get_redis_conn()
     result = bytes2json(r.hgetall("user:{userId}:cart".format(userId = userId)))
