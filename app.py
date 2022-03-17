@@ -7,7 +7,7 @@ app = Flask(__name__)
 
 # Get the Redis connection
 def get_redis_conn():
-    return redis.Redis(host = "34.122.158.53", port = 6379)
+    return redis.Redis(host = "127.0.0.1", port = 6379)
 
 # Transform a dict of bytes to regular dict
 def bytes2json(result_bytes):
